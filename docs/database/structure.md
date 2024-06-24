@@ -3,243 +3,228 @@ id: structure
 title: Estrutura do Banco de Dados
 ---
 
-## Tabelas Principais
+## Tabelas e Campos
 
-### Tabela de Cidades (`cities`)
-- **id**: Identificador único (int)
-- **name**: Nome da cidade (varchar)
-- **state**: Estado (varchar)
-- **region**: Região (varchar)
-- **lat**: Latitude (float)
-- **lng**: Longitude (float)
+### Banks
 
-### Tabela de Empresas (`companies`)
-- **id**: Identificador único (uuid)
-- **cnpj**: CNPJ da empresa (varchar)
-- **name**: Nome da empresa (varchar)
-- **city_id**: Referência à cidade (int, chave estrangeira)
-- **logo**: URL do logo (text)
-- **sidebar_logo**: URL do logo da barra lateral (text)
-- **sidebar_logo_mini**: URL do logo mini da barra lateral (text)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+- **id**: Identificador único do banco.
+- **name**: Nome do banco.
 
-### Tabela de Perfis (`profiles`)
-- **id**: Identificador único (uuid)
-- **name**: Nome do perfil (varchar)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+### Cities
 
-### Tabela de Menus (`menus`)
-- **id**: Identificador único (uuid)
-- **parent_id**: Referência ao menu pai (uuid)
-- **title**: Título do menu (varchar)
-- **icon**: Ícone do menu (varchar)
-- **route**: Rota do menu (varchar)
-- **profiles**: Lista de IDs de perfis que têm acesso (int[])
-- **order**: Ordem do menu (int)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+- **id**: Identificador único da cidade.
+- **name**: Nome da cidade.
+- **state**: Estado da cidade.
+- **region**: Região da cidade.
+- **lat**: Latitude.
+- **lng**: Longitude.
 
-### Tabela de Usuários (`users`)
-- **id**: Identificador único (uuid)
-- **name**: Nome do usuário (varchar)
-- **email**: Email do usuário (varchar)
-- **password**: Senha do usuário (varchar)
-- **profile_id**: Referência ao perfil (uuid)
-- **reset_password_fields**: Campos para redefinição de senha (text)
-- **active**: Indicador se o usuário está ativo (boolean)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+### Companies
 
-### Tabela de Bancos (`banks`)
-- **id**: Identificador único (uuid)
-- **name**: Nome do banco (varchar)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+- **id**: Identificador único da empresa.
+- **cnpj**: CNPJ da empresa.
+- **name**: Nome da empresa.
+- **city_id**: Identificador da cidade.
+- **logo**: URL do logotipo da empresa.
+- **sidebar_logo**: URL do logotipo para a barra lateral.
+- **sidebar_logo_mini**: URL do logotipo mini para a barra lateral.
+- **active**: Indica se a empresa está ativa.
 
-### Tabela de Categorias de Pessoas (`people_categories`)
-- **id**: Identificador único (uuid)
-- **name**: Nome da categoria (varchar)
-- **registration_type**: Tipo de registro (varchar)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+### Contract Logs
 
-### Tabela de Pessoas (`people`)
-- **id**: Identificador único (uuid)
-- **registration_type**: Tipo de registro (varchar)
-- **name**: Nome da pessoa (varchar)
-- **person_type**: Tipo de pessoa (varchar)
-- **category_person_id**: Referência à categoria de pessoa (uuid)
-- **cpf_cnpj**: CPF ou CNPJ (varchar)
-- **rg_ie**: RG ou Inscrição Estadual (varchar)
-- **date_of_birth**: Data de nascimento (date)
-- **email**: Email (varchar)
-- **phone1**: Telefone 1 (varchar)
-- **phone2**: Telefone 2 (varchar)
-- **zip_code**: CEP (varchar)
-- **address**: Endereço (varchar)
-- **number**: Número (varchar)
-- **complement**: Complemento (varchar)
-- **district**: Bairro (varchar)
-- **city_id**: Referência à cidade (int, chave estrangeira)
-- **lat**: Latitude (float)
-- **lng**: Longitude (float)
-- **notes**: Notas (text)
-- **active**: Indicador se a pessoa está ativa (boolean)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+- **id**: Identificador único do log de contrato.
+- **contract_id**: Identificador do contrato.
+- **contract_status_id**: Identificador do status do contrato.
+- **comments**: Comentários.
+- **created_by**: Usuário que criou o log.
+- **created_at**: Data de criação.
 
-### Tabela de Planos (`plans`)
-- **id**: Identificador único (uuid)
-- **name**: Nome do plano (varchar)
-- **description**: Descrição do plano (text)
-- **price**: Preço (numeric)
-- **days_to_start_billing**: Dias para início da cobrança (int)
-- **radius_group**: Grupo de raio (varchar)
-- **active**: Indicador se o plano está ativo (boolean)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+### Contract Status
 
-### Tabela de Categorias Financeiras (`financial_categories`)
-- **id**: Identificador único (uuid)
-- **parent_id**: Referência à categoria pai (uuid)
-- **type**: Tipo (varchar)
-- **name**: Nome da categoria (varchar)
-- **active**: Indicador se a categoria está ativa (boolean)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+- **id**: Identificador único do status do contrato.
+- **name**: Nome do status.
+- **color**: Cor do status.
 
-### Tabela de Contas Financeiras (`financial_accounts`)
-- **id**: Identificador único (uuid)
-- **name**: Nome da conta (varchar)
-- **type**: Tipo (varchar)
-- **bank_id**: Referência ao banco (uuid)
-- **agency**: Agência (varchar)
-- **account**: Conta (varchar)
-- **notes**: Notas (text)
-- **active**: Indicador se a conta está ativa (boolean)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+### Contracts
 
-### Tabela de Métodos de Pagamento (`payment_methods`)
-- **id**: Identificador único (uuid)
-- **name**: Nome do método de pagamento (varchar)
-- **active**: Indicador se o método de pagamento está ativo (boolean)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+- **id**: Identificador único do contrato.
+- **number**: Número do contrato.
+- **person_id**: Identificador da pessoa.
+- **plan_id**: Identificador do plano.
+- **price**: Preço do contrato.
+- **start_date**: Data de início.
+- **end_date**: Data de término.
+- **billing_day**: Dia de cobrança.
+- **username**: Nome de usuário.
+- **password**: Senha.
+- **installation_address**: Endereço de instalação.
+- **contract_status_id**: Identificador do status do contrato.
+- **cancellation_date**: Data de cancelamento.
+- **cancellation_reason**: Motivo do cancelamento.
+- **created_by**: Usuário que criou o contrato.
+- **created_at**: Data de criação.
+- **updated_by**: Usuário que atualizou o contrato.
+- **updated_at**: Data de atualização.
+- **deleted_by**: Usuário que deletou o contrato.
+- **deleted_at**: Data de deleção.
 
-### Tabela de Status de Contratos (`contract_statuses`)
-- **id**: Identificador único (uuid)
-- **name**: Nome do status (varchar)
-- **color**: Cor do status (varchar)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+### Financial
 
-### Tabela de Contratos (`contracts`)
-- **id**: Identificador único (uuid)
-- **number**: Número do contrato (varchar)
-- **person**: Referência à pessoa (uuid)
-- **plan**: Referência ao plano (uuid)
-- **price**: Preço (numeric)
-- **start_date**: Data de início (date)
-- **end_date**: Data de término (date)
-- **billing_day**: Dia de cobrança (int)
-- **username**: Nome de usuário (varchar)
-- **password**: Senha (varchar)
-- **installation_address**: Endereço de instalação (jsonb)
-- **status_id**: Referência ao status do contrato (uuid)
-- **cancellation_date**: Data de cancelamento (date)
-- **cancellation_reason**: Motivo do cancelamento (text)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+- **id**: Identificador único.
+- **type**: Tipo.
+- **financial_account_id**: Identificador da conta financeira.
+- **category_id**: Identificador da categoria.
+- **schedule_id**: Identificador do agendamento.
+- **number**: Número.
+- **value**: Valor.
+- **due_date**: Data de vencimento.
+- **description**: Descrição.
+- **person_id**: Identificador da pessoa.
+- **notes**: Notas.
+- **payment_method_id**: Identificador do método de pagamento.
+- **payment_date**: Data de pagamento.
+- **paid_value**: Valor pago.
+- **seq**: Sequência.
+- **created_at**: Data de criação.
+- **created_by**: Usuário que criou.
+- **updated_at**: Data de atualização.
+- **updated_by**: Usuário que atualizou.
+- **deleted_at**: Data de deleção.
+- **deleted_by**: Usuário que deletou.
 
-### Tabela de Logs de Contratos (`contract_logs`)
-- **id**: Identificador único (uuid)
-- **contract_id**: Referência ao contrato (uuid)
-- **status_id**: Referência ao status (uuid)
-- **comments**: Comentários (text)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+### Financial Accounts
 
-### Tabela de Agendamentos Financeiros (`financial_schedule`)
-- **id**: Identificador único (uuid)
-- **frequency**: Frequência (varchar)
-- **interval**: Intervalo (int)
-- **quantity**: Quantidade (int)
-- **first_date**: Primeira data (date)
-- **value**: Valor (numeric)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+- **id**: Identificador único da conta financeira.
+- **name**: Nome da conta.
+- **type**: Tipo da conta.
+- **bank_id**: Identificador do banco.
+- **agency**: Agência.
+- **account**: Conta.
+- **notes**: Notas.
+- **active**: Indica se a conta está ativa.
+- **created_by**: Usuário que criou.
+- **created_at**: Data de criação.
+- **updated_by**: Usuário que atualizou.
+- **updated_at**: Data de atualização.
+- **deleted_by**: Usuário que deletou.
+- **deleted_at**: Data de deleção.
 
-### Tabela Financeira (`financial`)
-- **id**: Identificador único (uuid)
-- **type**: Tipo (varchar)
-- **financial_account**: Referência à conta financeira (uuid)
-- **category**: Referência à categoria financeira (uuid)
-- **schedule**: Referência ao agendamento financeiro (uuid)
-- **number**: Número (varchar)
-- **value**: Valor (numeric)
-- **due_date**: Data de vencimento (date)
-- **description**: Descrição (text)
-- **person**: Referência à pessoa (uuid)
-- **notes**: Notas (text)
-- **payment_method**: Referência ao método de pagamento (uuid)
-- **payment_date**: Data de pagamento (date)
-- **paid_value**: Valor pago (numeric)
-- **installment**: Parcela (int)
-- **status**: Status (int)
-- **created_at**: Data de criação (timestamp)
-- **updated_at**: Data de atualização (timestamp)
-- **deleted_at**: Data de exclusão (timestamp)
-- **deleted_by**: ID do usuário que excluiu (int)
+### Financial Categories
 
-## Relacionamentos
+- **id**: Identificador único da categoria financeira.
+- **parent_id**: Identificador da categoria pai.
+- **type**: Tipo da categoria.
+- **name**: Nome da categoria.
+- **active**: Indica se a categoria está ativa.
+- **created_at**: Data de criação.
+- **created_by**: Usuário que criou.
+- **updated_at**: Data de atualização.
+- **updated_by**: Usuário que atualizou.
+- **deleted_at**: Data de deleção.
+- **deleted_by**: Usuário que deletou.
 
-### Principais Relacionamentos
+### Financial Schedule
 
-- **cities** e **companies**: Um `company` tem uma `city` (relação um-para-muitos).
-- **companies** e **people**: Uma `people` tem uma `company` (relação um-para-muitos).
-- **profiles** e **users**: Um `user`tem um `profile` (relação um-para-muitos).
-- **people_categories** e **people**: Uma `people` tem uma `category_people` (relação um-para-muitos).
-- **plans** e **contracts**: Um `contract` tem um `plan` (relação um-para-muitos).
-- **contract_statuses** e **contracts**: Um `contract` tem um `contract_statuses` (relação um-para-muitos).
-- **contracts** e **contract_logs**: Um `contract_log` tem um `contract` (relação um-para-muitos).
-- **financial_accounts** e **financial**: Um `financial` tem uma `financial_account` (relação um-para-muitos).
-- **financial_categories** e **financial**: Um `financial` tem uma `financial_category` (relação um-para-muitos).
+- **id**: Identificador único do agendamento financeiro.
+- **frequency**: Frequência.
+- **interval**: Intervalo.
+- **quantity**: Quantidade.
+- **first_date**: Primeira data.
+- **value**: Valor.
+- **created_at**: Data de criação.
+- **created_by**: Usuário que criou.
+- **updated_at**: Data de atualização.
+- **updated_by**: Usuário que atualizou.
 
-## Índices e Chaves
+### Menus
 
-- **Índices**: Índices são criados para os campos frequentemente usados em consultas para melhorar a performance.
-- **Chaves Primárias**: Garantem a unicidade dos registros nas tabelas.
-- **Chaves Estrangeiras**: Mantêm a integridade referencial entre tabelas relacionadas.
+- **id**: Identificador único do menu.
+- **parent_id**: Identificador do menu pai.
+- **title**: Título do menu.
+- **icon**: Ícone do menu.
+- **route**: Rota do menu.
+- **profiles**: Perfis associados ao menu.
+- **order**: Ordem do menu.
+
+### Payment Methods
+
+- **id**: Identificador único do método de pagamento.
+- **name**: Nome do método.
+- **active**: Indica se o método está ativo.
+
+### People Categories
+
+- **id**: Identificador único da categoria de pessoas.
+- **name**: Nome da categoria.
+- **registration_type**: Tipo de registro.
+- **created_by**: Usuário que criou.
+- **created_at**: Data de criação.
+- **updated_by**: Usuário que atualizou.
+- **updated_at**: Data de atualização.
+- **deleted_by**: Usuário que deletou.
+- **deleted_at**: Data de deleção.
+
+### Persons
+
+- **id**: Identificador único da pessoa.
+- **registration_type**: Tipo de registro.
+- **name**: Nome da pessoa.
+- **person_type**: Tipo de pessoa.
+- **category_person_id**: Identificador da categoria da pessoa.
+- **cpf_cnpj**: CPF ou CNPJ.
+- **rg_ie**: RG ou Inscrição Estadual.
+- **date_of_birth**: Data de nascimento.
+- **email**: Endereço de email.
+- **phone1**: Primeiro número de telefone.
+- **phone2**: Segundo número de telefone.
+- **zip_code**: CEP.
+- **address**: Endereço.
+- **number**: Número do endereço.
+- **complement**: Complemento.
+- **district**: Bairro.
+- **city_id**: Identificador da cidade.
+- **lat**: Latitude.
+- **lng**: Longitude.
+- **notes**: Notas.
+- **active**: Indica se a pessoa está ativa.
+- **created_by**: Usuário que criou.
+- **created_at**: Data de criação.
+- **updated_by**: Usuário que atualizou.
+- **updated_at**: Data de atualização.
+- **deleted_by**: Usuário que deletou.
+- **deleted_at**: Data de deleção.
+
+### Plans
+
+- **id**: Identificador único do plano.
+- **name**: Nome do plano.
+- **description**: Descrição do plano.
+- **price**: Preço do plano.
+- **days_to_start_billing**: Dias para começar a cobrança.
+- **radius_group**: Grupo de raio.
+- **active**: Indica se o plano está ativo.
+- **created_by**: Usuário que criou.
+- **created_at**: Data de criação.
+- **updated_by**: Usuário que atualizou.
+- **updated_at**: Data de atualização.
+- **deleted_by**: Usuário que deletou.
+- **deleted_at**: Data de deleção.
+
+### Profiles
+
+- **id**: Identificador único do perfil.
+- **name**: Nome do perfil.
+
+### Users
+
+- **id**: Identificador único do usuário.
+- **name**: Nome do usuário.
+- **email**: Email do usuário.
+- **password**: Senha do usuário.
+- **profile_id**: Identificador do perfil.
+- **reset_password_fields**: Campos para redefinição de senha.
+- **active**: Indica se o usuário está ativo.
+- **created_by**: Usuário que criou.
+- **created_at**: Data de criação.
+- **updated_by**: Usuário que atualizou.
+- **updated_at**: Data de atualização.
