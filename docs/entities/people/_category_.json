@@ -1,0 +1,8 @@
+{
+  "label": "Pessoas (People)",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Todas as entidades dentro do contexto de pessoas."
+  }
+}

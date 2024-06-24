@@ -1,0 +1,8 @@
+{
+  "label": "Entidades",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Todas as entidades disponíveis no sistema."
+  }
+}
